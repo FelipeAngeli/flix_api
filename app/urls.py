@@ -1,25 +1,16 @@
 
 from django.contrib import admin
-from django.urls import path
-from genres.views import GenreCreateListView, GenreRetriveUpdateDestroyView
-from actors.views import ActorCreateListView, ActorRetrieveUpdateDestroyView
-from movies.views import MovieCreateListView, MovieRetrieveUpdateDestroyView
-from reviews.views import ReviewCreateListView, ReviewRetrieveUpdateDestroyView
-
+from django.urls import include, path
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #genres
-    path('genres/', GenreCreateListView.as_view(), name= 'genre-create-list'),
-    path('genres/<int:pk>/', GenreRetriveUpdateDestroyView.as_view(), name='genre-detail-view'),
+    path('api/v1/', include('genres.urls')),
     #actors
-    path('actors/', ActorCreateListView.as_view(), name='actor-create-list'),
-    path('actors/<int:pk>/', ActorRetrieveUpdateDestroyView.as_view(), name='actor-detail-view'),
+    path('api/v1/', include('actors.urls')),
     #movies
-    path('movies/', MovieCreateListView.as_view(), name='movie-create-list'),
-    path('movies/<int:pk>/', MovieRetrieveUpdateDestroyView.as_view(), name='movie-detail-view'),
+    path('api/v1/', include('movies.urls')),
     #reviews
-    path('reviews/', ReviewCreateListView.as_view(), name='review-create-list'),
-    path('reviews/<int:pk>/', ReviewRetrieveUpdateDestroyView.as_view(), name='review-detail-view'),
+    path('api/v1/', include('reviews.urls')),
 ]
