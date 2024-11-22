@@ -31,3 +31,20 @@ class MovieModelSerializer(serializers.ModelSerializer):
         if not (10 <= len(value) <= 200):
             raise serializers.ValidationError('O resumo deve ter entre 10 e 200 caracteres.')
         return value
+    
+
+
+class MovieStatsSerializer(serializers.Serializer):
+    total_movies = serializers.IntegerField()
+    movies_by_genre = serializers.ListField(child=serializers.DictField())
+    total_reviews = serializers.IntegerField()
+    average_stars = serializers.FloatField()
+    
+    def to_representation(self, instance):
+        return {
+            'total_movies': instance['total_movies'],
+            'movies_by_genre': instance['movies_by_genre'],
+            'total_reviews': instance['total_reviews'],
+            'average_stars': round(instance['average_stars'], 2) if instance['average_stars'] else 0,
+        }
+    
