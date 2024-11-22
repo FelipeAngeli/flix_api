@@ -8,12 +8,8 @@ class Review(models.Model):
     stars = models.IntegerField(
         validators=[
             MinValueValidator(0, 'Avaliação mínima é 0'),
-            MaxValueValidator(5, 'Avaliação máxima é 5'),
-            ]
-        )
+            MaxValueValidator(5, 'Avaliação máxima é 5')])
     comment = models.TextField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return self.movie
-
-

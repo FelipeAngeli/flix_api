@@ -1,7 +1,8 @@
 from django.db import models
 
+
 NATIONALITY_CHOICES = (
-    ('US', 'Estados Unidos'), # ('value', 'display') o value é o que será salvo no banco de dados e o display é o que será exibido no formulário
+    ('US', 'Estados Unidos'),
     ('UK', 'Reino Unido'),
     ('FR', 'França'),
     ('DE', 'Alemanha'),
@@ -48,11 +49,12 @@ NATIONALITY_CHOICES = (
     ('SR', 'Suriname'),
 )
 
+
 class Actor(models.Model):
     name = models.CharField(max_length=200)
     birthday = models.DateField(null=True, blank=True)
     nationality = models.CharField(max_length=100, choices=NATIONALITY_CHOICES, null=True, blank=True)
-    biography = models.TextField(max_length= 600, null=True, blank=True)
+    biography = models.TextField(max_length=600, null=True, blank=True)
 
     def __str__(self):
         return self.name
