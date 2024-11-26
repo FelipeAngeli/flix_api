@@ -30,7 +30,6 @@ class Command(BaseCommand):
                         resume = row['resume']
                         genre_name = row['genre']
 
-                        # Criar ou obter o ator
                         actor, created = Actor.objects.get_or_create(
                             name=actor_name,
                             defaults={
@@ -41,10 +40,8 @@ class Command(BaseCommand):
                         if created:
                             self.stdout.write(self.style.NOTICE(f"Linha {row_number}: Ator '{actor_name}' criado com sucesso"))
 
-                        # Criar ou obter o gênero
                         genre, _ = Genre.objects.get_or_create(name=genre_name)
 
-                        # Criar ou obter o filme
                         movie, created = Movie.objects.get_or_create(
                             title=title,
                             defaults={
@@ -56,7 +53,6 @@ class Command(BaseCommand):
                         if created:
                             self.stdout.write(self.style.NOTICE(f"Linha {row_number}: Filme '{title}' criado com sucesso"))
 
-                        # Adicionar relação ator-filme
                         movie.actors.add(actor)
 
                     except KeyError as e:
