@@ -1,7 +1,7 @@
 from django.db.models import Avg
 from rest_framework import serializers
 from actors.serializer import ActorSerializer
-from genres.serializer import GenereSerializer
+from genres.serializer import GenreSerializer
 from movies.models import Movie
 
 
@@ -25,7 +25,7 @@ class MovieModelSerializer(serializers.ModelSerializer):
 
 class MovieDetailSerializer(serializers.ModelSerializer):
     actor = ActorSerializer(many=True)
-    genre = GenereSerializer()
+    genre = GenreSerializer()
     rate = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
